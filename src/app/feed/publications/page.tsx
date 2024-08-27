@@ -1,6 +1,6 @@
 import { fetchUsers } from "@/assets/utils"
 import { dehydrate, HydrationBoundary, QueryClient, useQuery } from "@tanstack/react-query"
-import Publications from "./publications"
+import Publications from "../feed"
 
 export default async function PublicationsPage() {
 

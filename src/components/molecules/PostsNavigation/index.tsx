@@ -1,14 +1,16 @@
+import Link from "next/link";
+
 export default function PostsNavigation() {
   return (
     <nav className="flex justify-center gap-16 font-bold">
       <div>
-        <p>{'[+]'}</p>
+        <Link href="/feed">{'[+]'}</Link>
       </div>
       <div>
-        <p>{'[>]'}</p>
+        <Link href="/feed/saved">{'[>]'}</Link>
       </div>
       <div>
-        <p>{'{^}'}</p>
+        <Link href="/feed/mentions">{'{^}'}</Link>
       </div>
     </nav>
   )

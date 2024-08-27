@@ -2,7 +2,7 @@ import Button from "@/components/atoms/Button";
 import Text from "@/components/atoms/Text";
 
 type AccountSelectorProp = {
-  currentAccountName: string
+  currentAccountName?: string
 }
 
 export default function AccountSelector({ currentAccountName }: AccountSelectorProp) {
