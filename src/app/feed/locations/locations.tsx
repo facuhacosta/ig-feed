@@ -1,18 +1,16 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query"
-import { fetchUsers } from "@/assets/utils"
+import { fetchLocations } from "@/assets/utils"
 import { Character } from "@/assets/types"
 
-const Publications = () => {
+export default function Locations() {
   const { isLoading, isError, data: characters = [] } = useQuery({
-    queryKey: ['characters'],
+    queryKey: ['locations'],
     queryFn: async () => {
-      return await fetchUsers()
+      return await fetchLocations()
     }
   })
-
-  console.log(characters);
 
   return (
     <div>
@@ -26,5 +24,3 @@ const Publications = () => {
     </div>
   )
 }
-
-export default Publications

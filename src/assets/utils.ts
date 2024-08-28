@@ -1,3 +1,4 @@
+import { QueryFunction, SkipToken } from '@tanstack/react-query';
 import { Character } from './types';
 
 export const fetchAccountDettails = async () => {
@@ -8,21 +9,26 @@ export const fetchAccountDettails = async () => {
     })
     .then(res => {
       const characters: Character = res
-      console.log(characters)
       return characters
     })
 }
 
-export const fetchCharacters = async () => {
-  return await fetch(`https://rickandmortyapi.com/api/character`)
+type FetchCharactersResponse = {
+  count: number;
+  pages: number;
+  next: string;
+  prev: string;
+  results: Character[]
+}
+
+export const fetchCharacters: QueryFunction<FetchCharactersResponse, string[], number> | SkipToken = async ({pageParam}) => {
+  const response: FetchCharactersResponse = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageParam}`)
     .then(async res => {
       if (!res.ok) throw new Error("Error del fetch");
       return await res.json()
     })
-    .then(res => {
-      const characters: Character[] = res.results
-      return characters
-    })
+    
+    return response
 }
 
 export const fetchLocations = async () => {
@@ -37,7 +43,7 @@ export const fetchLocations = async () => {
     })
 }
 
-export const fetchEpisode = async () => {
+export const fetchEpisodes = async () => {
   return await fetch(`https://rickandmortyapi.com/api/episode`)
     .then(async res => {
       if (!res.ok) throw new Error("Error del fetch");

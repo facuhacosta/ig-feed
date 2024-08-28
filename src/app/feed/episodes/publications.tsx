@@ -1,18 +1,16 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query"
-import { fetchUsers } from "@/assets/utils"
+import { fetchEpisodes } from "@/assets/utils"
 import { Character } from "@/assets/types"
 
 const Publications = () => {
   const { isLoading, isError, data: characters = [] } = useQuery({
-    queryKey: ['characters'],
+    queryKey: ['episodes'],
     queryFn: async () => {
-      return await fetchUsers()
+      return await fetchEpisodes()
     }
   })
-
-  console.log(characters);
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { fetchAccountDettails, fetchCharacters } from "@/assets/utils"
+import { fetchCharacters } from "@/assets/utils"
 import { dehydrate, HydrationBoundary, QueryClient, useQuery } from "@tanstack/react-query"
 import Feed from "./feed"
 
@@ -11,11 +11,12 @@ export default async function FeedPage() {
     },
   })
 
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ['characters'],
-    queryFn: async () => { 
-      return await fetchCharacters()
-    },
+    queryFn:fetchCharacters,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) => lastPage.pages + 1, 
+    pages: 2
   })
 
 

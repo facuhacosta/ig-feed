@@ -1,6 +1,6 @@
-import { fetchUsers } from "@/assets/utils"
+import { fetchLocations } from "@/assets/utils"
 import { dehydrate, HydrationBoundary, QueryClient, useQuery } from "@tanstack/react-query"
-import Publications from "./publications"
+import Locations from "./locations"
 
 export default async function PublicationsPage() {
 
@@ -13,15 +13,15 @@ export default async function PublicationsPage() {
   })
 
   await queryClient.prefetchQuery({
-    queryKey: ['characters'],
+    queryKey: ['locations'],
     queryFn: async () => {
-      return await fetchUsers()
+      return await fetchLocations()
     },
   })
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Publications />
+      <Locations />
     </HydrationBoundary>
   )
 }
