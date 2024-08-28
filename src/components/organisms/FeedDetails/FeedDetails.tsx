@@ -9,7 +9,7 @@ import { fetchAccountDettails } from "@/assets/utils"
 
 export default function FeedDetails() {
 
-  const { isLoading, isError, data: AccountDetails } = useQuery({
+  const { isLoading, isError, data: accountDetails } = useQuery({
     queryKey: ['accountDetails'],
     queryFn: async () => {
       return await fetchAccountDettails()
@@ -19,10 +19,10 @@ export default function FeedDetails() {
   return (
     <>
       <nav className="flex w-full justify-between">
-        <AccountSelector currentAccountName={AccountDetails?.name} />
+        <AccountSelector currentAccountName={accountDetails?.name} />
         <CallTiActionIcons />
       </nav>
-      <Header />
+      <Header details={accountDetails} />
       <PostsNavigation />
     </>
   )

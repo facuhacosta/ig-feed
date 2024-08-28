@@ -8,7 +8,7 @@ export default async function FeedLayout({
 }>) {
 
   return (
-    <section className="max-w-[500px] w-full self-center border-[#fff] border-2 p-2">
+    <section className="max-w-[640px] w-full self-center p-2">
       <FeedDetailsSSr/>
         <div>
             {children}

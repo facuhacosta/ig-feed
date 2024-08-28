@@ -14,9 +14,13 @@ export default async function FeedPage() {
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['characters'],
     queryFn:fetchCharacters,
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, pages) => lastPage.pages + 1, 
-    pages: 2
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, pages) => {
+      const nextString = lastPage.info.next
+      const nextPageParam = +nextString.slice(nextString.indexOf('page=') + 5)
+      return nextPageParam
+    }, 
+    pages: 0
   })
 
 

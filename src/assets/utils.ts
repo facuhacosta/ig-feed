@@ -13,11 +13,25 @@ export const fetchAccountDettails = async () => {
     })
 }
 
+export const fetchPostDetails = async (characterId: number) => {
+  return await fetch(`https://rickandmortyapi.com/api/character/${characterId}`)
+    .then(async res => {
+    if (!res.ok) throw new Error("Error del fetch");
+    return await res.json()
+  })
+    .then(res => {
+      const characters: Character = res
+      return characters
+    })
+}
+
 type FetchCharactersResponse = {
-  count: number;
-  pages: number;
-  next: string;
-  prev: string;
+  info: {
+    count: number;
+    pages: number;
+    next: string;
+    prev: string;
+  }
   results: Character[]
 }
 

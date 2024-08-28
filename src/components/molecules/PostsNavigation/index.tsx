@@ -12,7 +12,7 @@ export default function PostsNavigation() {
   }
 
   return (
-    <nav className="flex justify-center gap-16 font-bold">
+    <nav className="flex justify-center gap-16 font-bold mb-2">
       <div>
         <Link href="/feed" title="feed" onClick={handleOnClick}><GroupsIcon/></Link>
       </div>
