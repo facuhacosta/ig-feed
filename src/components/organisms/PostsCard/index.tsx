@@ -7,7 +7,11 @@ import PostsCardShadow from "@/components/molecules/PostsCardShadow";
 export default function PostsCard({ character }: { character: Character }) {
   const { currentValue, setItem } = useLocalStorage(`${character.id}`)
 
-  const handleOnClick = () => setItem(!currentValue)
+  const handleOnClick = (event: React.PointerEvent<HTMLParagraphElement>) => {
+    event.stopPropagation()
+    setItem(!currentValue)
+  }
+  
   return (
     <div key={character.name}>
       <div className="relative">
