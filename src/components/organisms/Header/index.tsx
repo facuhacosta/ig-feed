@@ -8,7 +8,7 @@ export default function Header({details}: {details?: Character}) {
   return (
     <header>
       <section className="flex w-full justify-between items-center mt-4">
-        <ProfileImage src={details?.image} />
+        <ProfileImage src={details?.image || ''} />
         <ProfileStatistics />
       </section>
       <section className="mt-4">

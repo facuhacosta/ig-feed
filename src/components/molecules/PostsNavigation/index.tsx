@@ -12,7 +12,7 @@ export default function PostsNavigation() {
   }
 
   return (
-    <nav className="flex justify-center gap-16 font-bold mb-2">
+    <nav className="flex justify-center gap-16 font-bold mb-2 laptop:py-4">
       <div>
         <Link href="/feed" title="feed" onClick={handleOnClick}><GroupsIcon/></Link>
       </div>

@@ -4,8 +4,11 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 import { fetchCharacters } from "@/assets/utils"
 import { Character } from "@/assets/types"
 import PostsCard from "@/components/organisms/PostsCard"
+import { useEffect, useRef } from "react"
 
 export default function Feed() {
+  const bottom = useRef<HTMLDivElement>(null);
+
   const { isLoading, isError, data = [] as any, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ['characters'],
     queryFn: fetchCharacters,
@@ -17,18 +20,22 @@ export default function Feed() {
     }, 
   })
 
-  console.log(data)
-  return (
-    <div className="grid grid-cols-2 gap-1 tablet:grid-cols-3 tablet:gap-2">
-      {data?.pages?.length > 0 && data?.pages?.map(({info, results}: {info: any ,results: Character[]}) => (
-        <>
-          {results.map((character) => (
-            <PostsCard character={character} />
-          ))}
-        </>
-      ))}
+  useEffect(() => {
+    const obserber = new IntersectionObserver(() => {
+      if (hasNextPage) {
+        fetchNextPage()
+      }
+    })
 
-      <button onClick={() => fetchNextPage()}>Fetch next Page</button>
+    obserber.observe(bottom.current as HTMLElement)
+  },[])
+  return (
+    <div className="grid grid-cols-2 gap-1 justify-items-center phone:grid-cols-3 ">
+      {data?.pages?.length > 0 && data?.pages?.map(({info, results}: {info: any ,results: Character[]}) => results.map((character) => (
+          <PostsCard character={character} />
+        )))}
+
+      <div ref={bottom} />
       {isLoading && <p>Is Loading ...</p>}
       {(!isLoading && isError) && <p>Error en la Carga</p>}
       {!isError && !isLoading && data?.pages?.length === 0 && <p>No hay Usuarios</p>}

@@ -12,9 +12,13 @@ export default function AccountSelector({ currentAccountName }: AccountSelectorP
     <div className="flex justify-between w-[150px] items-center">
       <Button secondary className="flex">
         <Text type="bold">{currentAccountName}</Text>
-        <ExpandMoreIcon />
+        <p className="laptop:hidden">
+          <ExpandMoreIcon/>
+        </p>
       </Button>
-      <CircleIcon sx={{fontSize: 12, color: 'red'}} />
+      <p className="laptop:hidden">
+        <CircleIcon sx={{fontSize: 12, color: 'red'}} />
+      </p>
     </div>
   )
 }

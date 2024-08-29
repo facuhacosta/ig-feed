@@ -18,7 +18,7 @@ export default function FeedDetails() {
 
   return (
     <>
-      <nav className="flex w-full justify-between">
+      <nav className="flex w-full justify-between laptop:mb-7">
         <AccountSelector currentAccountName={accountDetails?.name} />
         <CallTiActionIcons />
       </nav>
