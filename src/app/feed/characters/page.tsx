@@ -1,3 +1,4 @@
+'use client'
 import { useLocalStorage } from "@/assets/hooks";
 import { fetchPostDetails } from "@/assets/utils";
 import { useQuery } from "@tanstack/react-query";
