@@ -1,7 +1,7 @@
 import Button from "@/components/atoms/Button";
+import NotificationsIndicator from "@/components/atoms/NotificationsIndicator";
 import Text from "@/components/atoms/Text";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CircleIcon from '@mui/icons-material/Circle';
 
 type AccountSelectorProp = {
   currentAccountName?: string
@@ -16,9 +16,7 @@ export default function AccountSelector({ currentAccountName }: AccountSelectorP
           <ExpandMoreIcon/>
         </p>
       </Button>
-      <p className="laptop:hidden">
-        <CircleIcon sx={{fontSize: 12, color: 'red'}} />
-      </p>
+      <NotificationsIndicator />
     </div>
   )
 }
