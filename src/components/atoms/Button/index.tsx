@@ -20,5 +20,5 @@ export default function Button({
   }
 
   const styles = useMemo(() => createStyles(), [secondary])
-  return <button className={`${className} ${styles}`}>{children}</button>
+  return <button aria-label="button" className={`${className} ${styles}`}>{children}</button>
 }

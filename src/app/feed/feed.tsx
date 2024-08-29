@@ -5,6 +5,7 @@ import { fetchCharacters } from "@/assets/utils"
 import { Character } from "@/assets/types"
 import PostsCard from "@/components/organisms/PostsCard"
 import { useEffect, useRef } from "react"
+import Skeleton from "@mui/joy/Skeleton"
 
 export default function Feed() {
   const bottom = useRef<HTMLDivElement>(null);
@@ -36,7 +37,7 @@ export default function Feed() {
         )))}
 
       <div ref={bottom} />
-      {isLoading && <p>Is Loading ...</p>}
+      <Skeleton loading={isLoading} variant="text" width={150} />
       {(!isLoading && isError) && <p>Error en la Carga</p>}
       {!isError && !isLoading && data?.pages?.length === 0 && <p>No hay Usuarios</p>}
     </div>
